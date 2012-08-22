@@ -1,0 +1,122 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+	<head>	
+	
+		<title>jquery.ui.checkmark 0.6</title>
+		
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		
+		<link rel="stylesheet" type="text/css" href="css/jquery.ui.checkmark.css"/>
+		
+		<script language="javascript" type="text/javascript" src="js/jquery.js"></script>
+		<script language="javascript" type="text/javascript" src="js/jquery.ui.checkmark.min.js"></script>
+		
+		<script>
+			jQuery(document).ready(function(){
+				$('input[type="checkbox"], input[type="radio"]').checkmark({});
+            });
+		</script>
+		
+		<style type="">
+			html{
+				font-family: verdana, arial, tahoma, helvetica, sans-serif;
+				font-weight: normal;
+				font-size: 12px;
+			}
+
+			fieldset {
+				width: 980px;
+				margin: 15px auto;
+				padding: 15px 10px 10px;
+				border: 1px solid #E5E5E5;
+				border-top: 2px solid #555;
+				-moz-border-radius: 10px;
+				-khtml-border-radius: 10px;
+				-webkit-border-radius: 10px;
+				border-radius: 10px;
+				-webkit-box-shadow: 0 1px 0 0 #E5E5E5;
+				-moz-box-shadow: 0 1px 0 0 #E5E5E5;
+				-khtml-box-shadow: 0 1px 0 0 #E5E5E5;
+				box-shadow: 0 1px 0 0 #E5E5E5;
+			}
+			
+			fieldset fieldset{
+				width: 45%;
+				margin-left: 20px;
+				float: left;
+				border-top: 1px solid #555;
+			}
+			
+			legend {
+				font-weight: bold;
+				font-size: 13px;
+			}
+		
+		</style>
+		
+	</head>
+
+	<body>
+	
+		<fieldset>
+			<legend>EXEMPLO</legend>
+			<fieldset>
+				<legend>Radios</legend>
+				
+				<b>Like This: </b>
+				
+				<input name="likeThis" id="likeThis:yes" value="true" type="radio" />
+				<label for="likeThis:yes">Yes</label>
+				
+				<input name="likeThis" id="likeThis:no" value="false" type="radio" />
+				<label for="likeThis:no">No</label>
+							
+				<br />
+				<br />
+				<b>Like This: </b>
+				<input name="likeThis2" id="likeThis2:yes" value="true" type="radio" checked="checked" disabled="disabled" />
+				<label for="likeThis2:yes">Yes</label>
+				
+				<input name="likeThis2" id="likeThis2:no" value="false" type="radio" disabled="disabled" />
+				<label for="likeThis2:no">No</label>
+				
+			</fieldset>
+			
+			<fieldset>
+				<legend>Checkbox</legend>
+				
+				<b>Programming language: </b>
+				
+				<input name="PL" id="PL:Java" value="M" type="checkbox" />
+				<label for="PL:Java">Java</label>
+	
+				<input name="PL" id="PL:PHP" value="T" type="checkbox" />
+				<label for="PL:PHP">PHP</label>
+	
+				<input name="PL" id="PL:C" value="N" type="checkbox" />
+				<label for="PL:C">C</label>
+				
+				<input name="PL" id="PL:C++" value="N" type="checkbox" />
+				<label for="PL:C++">C++</label>
+				
+				<br />
+				<br />
+				<b>Programming language: </b>
+				
+				<input name="PL2" id="PL2:Java" value="M" type="checkbox" checked="checked" disabled="disabled" />
+				<label for="PL2:Java">Java</label>
+	
+				<input name="PL2" id="PL2:PHP" value="T" type="checkbox" checked="checked" disabled="disabled" />
+				<label for="PL2:PHP">PHP</label>
+	
+				<input name="PL2" id="PL2:C" value="N" type="checkbox" disabled="disabled" />
+				<label for="PL2:C">C</label>
+				
+				<input name="PL2" id="PL2:C++" value="N" type="checkbox" disabled="disabled" />
+				<label for="PL2:C++">C++</label>
+				
+			</fieldset>
+		</fieldset>
+	</body>
+</html>

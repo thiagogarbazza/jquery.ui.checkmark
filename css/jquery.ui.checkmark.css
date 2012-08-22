@@ -1,0 +1,75 @@
+.ui-checkmark {
+	display: inline-block;
+	cursor: pointer;
+	height: 15px;
+	width: 15px;
+	margin: 0 5px;
+	background: url("../images/ui-checkmark.png") no-repeat scroll 0 0 transparent;
+}
+
+.ui-checkmark:focus {
+	outline: thin dotted;
+}
+
+.ui-checkmark-input {
+	display: none !important;
+}
+
+.ui-checkmark-label {
+	display: inline-block;
+}
+
+.ui-checkmark-disabled {
+	cursor: default;
+	-moz-opacity: 0.40;
+	filter: alpha(opacity = 40);
+	opacity: 0.40;
+}
+
+/* ==========================================================================
+   Checkbox
+   ========================================================================== */
+   
+.ui-checkmark.ui-checkbox {
+	background-position: -5px -5px;
+}
+
+.ui-checkmark.ui-checkbox:hover {
+	background-position: -5px -25px;
+}
+
+.ui-checkbox.ui-checkmark-checked {
+	background-position: -5px -45px;
+}
+
+.ui-checkbox.ui-checkmark-checked:hover {
+	background-position: -5px -65px;
+}
+
+.ui-checkbox.ui-checkmark-disabled {
+	
+}
+
+/* ==========================================================================
+   Radio
+   ========================================================================== */
+   
+.ui-checkmark.ui-radio {
+	background-position: -25px -5px;
+}
+
+.ui-checkmark.ui-radio:hover {
+	background-position: -25px -25px;
+}
+
+.ui-radio.ui-checkmark-checked {
+	background-position: -25px -45px;
+}
+
+.ui-radio.ui-checkmark-checked:hover {
+	background-position: -25px -65px;
+}
+
+.ui-radio.ui-checkmark-disabled {
+	
+}
