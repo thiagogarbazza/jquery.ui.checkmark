@@ -20,8 +20,8 @@
     	labelStyleClass = 'ui-checkmark-label',
     	styleClass = 'ui-checkmark',
         defaults = {
-    		styleClass: ''
-			//disabled: false;
+    		styleClass: '',
+			disabled: false
     	};
     
      
@@ -53,6 +53,7 @@
 	 */
     
     Plugin.prototype.init = function(){
+		Plugin.options = this.options;
     	var input = $(this.element);
     	var type = input.attr('type');
     	if(type == 'radio' || type == 'checkbox'){
@@ -100,6 +101,8 @@
     	}
     };
     
+	Plugin.options = {};
+	
     /**
 	 * Método responsável por controlar o input que está marcado ou não marcado. 
 	 * 
@@ -228,8 +231,10 @@
     		deactive = (readonly != undefined && readonly !== null && (readonly == true || readonly == 'readonly'));
     	}
     	
-    	return !deactive;
-    };
+		//console.log(options);
+    	//return !deactive;
+		return !deactive && !this.options.disabled;
+	};
     
 	/**
 	 * Método responsável por informar se o input está marcado.
