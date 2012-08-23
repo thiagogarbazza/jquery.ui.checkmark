@@ -21,6 +21,7 @@
     	styleClass = 'ui-checkmark',
         defaults = {
     		styleClass: ''
+			//disabled: false;
     	};
     
      
@@ -77,10 +78,9 @@
 	
 	        Plugin.mark(checkmark);
 	        Plugin.label(checkmark);
-	    	
-	    	if(Plugin.isActive(checkmark) == true){
-	    		Plugin.deactivate(checkmark);	
-	    	}else{
+	
+			if(Plugin.isActive(checkmark))
+			{
 	    		checkmark.keyup(function(event){
 	    			if(event.keyCode == 32){
 	    				Plugin.click($(this));
@@ -91,6 +91,10 @@
 	    			Plugin.click($(this));
 		    	});
 	    	}
+			else
+			{
+				Plugin.deactivate(checkmark);	
+			}
     	}else{
     		console.error("Somente podem ser selecionados elemendos do tipo input radio e input checkbox");
     	}
@@ -184,9 +188,9 @@
     Plugin.deactivate = function(checkmark){
     	var styleClass = 'ui-checkmark-disabled';
     	if(Plugin.isActive(checkmark)){
-    		checkmark.addClass(styleClass);
-    	}else{
     		checkmark.removeClass(styleClass);
+    	}else{
+    		checkmark.addClass(styleClass);
     	}	
     };
     
@@ -218,13 +222,13 @@
 	 */
     Plugin.isActive = function(checkmark){
     	var disabled = checkmark.data('disabled');
-    	var active = (disabled != undefined && disabled !== null && (disabled == true || disabled == 'disabled'));
-    	if(active == false){ // caso não esteja disabled mais esteja como readonly. 
+    	var deactive = (disabled != undefined && disabled !== null && (disabled == true || disabled == 'disabled'));
+    	if(deactive == false){ // caso não esteja disabled mais esteja como readonly. 
     		var readonly = checkmark.data('readonly');
-    		active = (readonly != undefined && readonly !== null && (readonly == true || readonly == 'readonly'));
+    		deactive = (readonly != undefined && readonly !== null && (readonly == true || readonly == 'readonly'));
     	}
     	
-    	return active;
+    	return !deactive;
     };
     
 	/**
@@ -254,7 +258,7 @@
 	 */
     Plugin.label = function(checkmark){
     	var label = $('label[for="' + checkmark.data('id')+'"]');
-		if(Plugin.isActive(checkmark) == false){
+		if(Plugin.isActive(checkmark)){
 			label.click(function(){
 				Plugin.click(checkmark);
 			});
