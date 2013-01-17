@@ -4,22 +4,21 @@
  * @author Thiago Garbazza
  * @copyright Thiago Garbazza
  * @license Dual licensed under the MIT or GPL Version 2 licenses.
- * @version 0.6
+ * @version 0.7
  * @see https://github.com/thiagogarbazza/jquery.ui.checkmark/wiki
  */
-;(function($, window, undefined){
+;(function($, window, document undefined){
     
 	/*											Attributes
 	 * -------------------------------------------------------------------------
 	 */
 	
     var pluginName = 'checkmark',
-        document = window.document,
-        lenth = 0,
+      lenth = 0,
     	inputStyleClass = 'ui-checkmark-input',
     	labelStyleClass = 'ui-checkmark-label',
-    	styleClass = 'ui-checkmark',
-        defaults = {
+    	styleClass = 'ui-checkmark';
+      defaults = {
     		styleClass: ''
     	};
     
