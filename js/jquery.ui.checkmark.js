@@ -7,94 +7,95 @@
  * @version 0.7
  * @see https://github.com/thiagogarbazza/jquery.ui.checkmark/wiki
  */
-;(function($, window, document undefined){
-    
+ ;(function($, window, document undefined){
+
 	/*											Attributes
 	 * -------------------------------------------------------------------------
 	 */
-	
-  var pluginName = 'checkmark';
-  var lenth = 0;
-  var inputStyleClass = 'ui-checkmark-input';
-  var labelStyleClass = 'ui-checkmark-label';
-  var styleClass = 'ui-checkmark';
-  var defaults = {
+
+   var pluginName = 'checkmark';
+   var lenth = 0;
+   var inputStyleClass = 'ui-checkmark-input';
+   var labelStyleClass = 'ui-checkmark-label';
+   var styleClass = 'ui-checkmark';
+   var defaults = {
     styleClass: ''
   };
-    
-     
+
+
 	/*											Constructors
 	 * -------------------------------------------------------------------------
 	 */
-    
-    function Plugin(element, options){
-    	this.element = element;
-        
-        this.options = $.extend({}, defaults, options) ;
- 
-        this._defaults = defaults;
-        this._name = pluginName;
-        
-        this.init();
-    };
 
-    $.fn[pluginName] = function(options){
-        return this.each(function(){
-            if (!$.data(this, 'plugin_' + pluginName)){
-                $.data(this, 'plugin_' + pluginName, new Plugin(this, options));
-            }
-        });
-    };
-    
+   function Plugin(element, options){
+     this.element = element;
+
+     this.options = $.extend({}, defaults, options) ;
+
+     this._defaults = defaults;
+     this._name = pluginName;
+
+     this.init();
+   };
+
+   $.fn[pluginName] = function(options){
+    return this.each(function(){
+      if (!$.data(this, 'plugin_' + pluginName)){
+        $.data(this, 'plugin_' + pluginName, new Plugin(this, options));
+      }
+    });
+  };
+
 	/*											Methods
 	 * -------------------------------------------------------------------------
 	 */
-    
-    Plugin.prototype.init = function(){
-    	var input = $(this.element);
-    	var type = input.attr('type');
-    	if(type == 'radio' || type == 'checkbox'){
-	    	var id =  input.attr('id');
-	    	if(id == undefined || id == ''){
-	    		id = ++lenth;
-	    		input.attr('id', 'ui-checkmark-'+id);
-	    	}
-	    	
-	    	var checkmarkId = 'ui-checkmark-' + id;    	
-	    	input.addClass(inputStyleClass);
-	    	input.wrap('<a id="'+checkmarkId+'" class="ui-widget '+styleClass+' ui-'+type+' '+this.options.styleClass+'" href="javascript:;" />');
-	    	
-	    	var checkmark = $('a[id="'+checkmarkId+'"]');
-	                
-	    	checkmark.data('id', input.attr('id'));
-	    	checkmark.data('type', type);
-	    	checkmark.data('name', input.attr('name'));
-	    	checkmark.data('checked', input.attr('checked'));
-	    	checkmark.data('disabled', input.attr('disabled'));
-	    	checkmark.data('readonly', input.attr('readonly'));
-	    	checkmark.attr('inputname', checkmark.data('name'));
-	
-	        Plugin.mark(checkmark);
-	        Plugin.label(checkmark);
-	    	
-	    	if(Plugin.isActive(checkmark) == true){
-	    		Plugin.deactivate(checkmark);	
-	    	}else{
-	    		checkmark.keyup(function(event){
-	    			if(event.keyCode == 32){
-	    				Plugin.click($(this));
-	    			}
-	    		});
-	    		
-	    		checkmark.click(function(){
-	    			Plugin.click($(this));
-		    	});
-	    	}
-    	}else{
-    		console.error("Somente podem ser selecionados elemendos do tipo input radio e input checkbox");
-    	}
-    };
-    
+
+   Plugin.prototype = {
+    init: function () {
+      var input = $(this.element);
+      var type = input.attr('type');
+      if(type == 'radio' || type == 'checkbox'){
+      var id =  input.attr('id');
+        if(id == undefined || id == ''){
+         id = ++lenth;
+         input.attr('id', 'ui-checkmark-'+id);
+        }
+
+        var checkmarkId = 'ui-checkmark-' + id;    	
+        input.addClass(inputStyleClass);
+        input.wrap('<a id="'+checkmarkId+'" class="ui-widget '+styleClass+' ui-'+type+' '+this.options.styleClass+'" href="javascript:;" />');
+
+        var checkmark = $('a[id="'+checkmarkId+'"]');
+
+        checkmark.data('id', input.attr('id'));
+        checkmark.data('type', type);
+        checkmark.data('name', input.attr('name'));
+        checkmark.data('checked', input.attr('checked'));
+        checkmark.data('disabled', input.attr('disabled'));
+        checkmark.data('readonly', input.attr('readonly'));
+        checkmark.attr('inputname', checkmark.data('name'));
+
+        Plugin.mark(checkmark);
+        Plugin.label(checkmark);
+
+        if(Plugin.isActive(checkmark) == true){
+          Plugin.deactivate(checkmark);	
+        }else{
+          checkmark.keyup(function(event){
+            if(event.keyCode == 32){
+              Plugin.click($(this));
+            }
+          });
+          checkmark.click(function(){
+            Plugin.click($(this));
+          });
+        }
+      }else{
+        console.error("Somente podem ser selecionados elemendos do tipo input radio e input checkbox");
+      }
+    }  
+  };
+
     /**
 	 * Método responsável por controlar o input que está marcado ou não marcado. 
 	 * 
@@ -105,15 +106,15 @@
 	 * 
 	 * @return void.
 	 */
-    Plugin.mark = function(checkmark){
-    	var styleClass = 'ui-checkmark-checked';
-    	if(Plugin.isChecked(checkmark) == true){
-    		checkmark.addClass(styleClass);
-		}else{
-			checkmark.removeClass(styleClass);
-		}	
-    };
-    
+   Plugin.mark = function(checkmark){
+     var styleClass = 'ui-checkmark-checked';
+     if(Plugin.isChecked(checkmark) == true){
+      checkmark.addClass(styleClass);
+    }else{
+     checkmark.removeClass(styleClass);
+   }	
+ };
+
     /**
 	 * Método responsável por controlar o click no checkmark. 
 	 * 
@@ -124,14 +125,14 @@
 	 * 
 	 * @return void.
 	 */
-    Plugin.click = function(checkmark){
-    	if(checkmark.data('type') == 'radio'){
-    		Plugin.clickRadio(checkmark);
-    	}else if(checkmark.data('type') == 'checkbox'){
-    		Plugin.clickCheckbox(checkmark);
-    	}
-    };
-    
+   Plugin.click = function(checkmark){
+     if(checkmark.data('type') == 'radio'){
+      Plugin.clickRadio(checkmark);
+    }else if(checkmark.data('type') == 'checkbox'){
+      Plugin.clickCheckbox(checkmark);
+    }
+  };
+
     /**
 	 * Método responsável por controlar o click no checkmark de checkbox. 
 	 * 
@@ -142,12 +143,12 @@
 	 * 
 	 * @return void.
 	 */
-    Plugin.clickCheckbox = function(checkmark){
-    	var checked = Plugin.isChecked(checkmark);
-    	Plugin.setChecked(checkmark, !checked);
-    	Plugin.mark(checkmark);
-    };
-    
+   Plugin.clickCheckbox = function(checkmark){
+     var checked = Plugin.isChecked(checkmark);
+     Plugin.setChecked(checkmark, !checked);
+     Plugin.mark(checkmark);
+   };
+
     /**
 	 * Método responsável por controlar o click no checkmark de radio button. 
 	 * 
@@ -158,18 +159,18 @@
 	 * 
 	 * @return void.
 	 */
-    Plugin.clickRadio = function(checkmark){
-    	if(Plugin.isChecked(checkmark) == false){
-	    	$('.'+styleClass+'[inputname="'+checkmark.data('name')+'"]' ).each(function(){
-	    		var radio = $(this);
-	    		Plugin.setChecked(radio, false);
-	    		 Plugin.mark(radio);
-	    	});
-	    	Plugin.setChecked(checkmark, true);
-	    	Plugin.mark(checkmark);
-		}
-    };
-    
+   Plugin.clickRadio = function(checkmark){
+     if(Plugin.isChecked(checkmark) == false){
+      $('.'+styleClass+'[inputname="'+checkmark.data('name')+'"]' ).each(function(){
+       var radio = $(this);
+       Plugin.setChecked(radio, false);
+       Plugin.mark(radio);
+     });
+      Plugin.setChecked(checkmark, true);
+      Plugin.mark(checkmark);
+    }
+  };
+
     /**
 	 * Método responsável por controlar o input que está desabilidado ou é somente leitura. 
 	 * 
@@ -180,15 +181,15 @@
 	 * 
 	 * @return void.
 	 */
-    Plugin.deactivate = function(checkmark){
-    	var styleClass = 'ui-checkmark-disabled';
-    	if(Plugin.isActive(checkmark)){
-    		checkmark.addClass(styleClass);
-    	}else{
-    		checkmark.removeClass(styleClass);
-    	}	
-    };
-    
+   Plugin.deactivate = function(checkmark){
+     var styleClass = 'ui-checkmark-disabled';
+     if(Plugin.isActive(checkmark)){
+      checkmark.addClass(styleClass);
+    }else{
+      checkmark.removeClass(styleClass);
+    }	
+  };
+
     /**
 	 * Método responsável por informar se o input está marcado ou não marcado.
 	 * 
@@ -200,11 +201,11 @@
 	 * 
 	 * @return void.
 	 */
-    Plugin.setChecked = function(checkmark, checked){
-    	 checkmark.data('checked', checked);
-    	 checkmark.children().get(0).checked = checked;
-    };
-    
+   Plugin.setChecked = function(checkmark, checked){
+    checkmark.data('checked', checked);
+    checkmark.children().get(0).checked = checked;
+  };
+
 	/**
 	 * Método responsável por informar se o input está ativo.
 	 * 
@@ -215,9 +216,9 @@
 	 * 
 	 * @return <b>TRUE</b> o input está ativo,<br> <b>FALSE</b> o input não está ativo.
 	 */
-    Plugin.isActive = function(checkmark){
-    	var disabled = checkmark.data('disabled');
-    	var active = (disabled != undefined && disabled !== null && (disabled == true || disabled == 'disabled'));
+   Plugin.isActive = function(checkmark){
+     var disabled = checkmark.data('disabled');
+     var active = (disabled != undefined && disabled !== null && (disabled == true || disabled == 'disabled'));
     	if(active == false){ // caso não esteja disabled mais esteja como readonly. 
     		var readonly = checkmark.data('readonly');
     		active = (readonly != undefined && readonly !== null && (readonly == true || readonly == 'readonly'));
@@ -236,11 +237,11 @@
 	 * 
 	 * @return <b>TRUE</b> o input está marcado,<br> <b>FALSE</b> o input não está marcado.
 	 */
-    Plugin.isChecked = function(checkmark){
-    	var checked = checkmark.data('checked');
-    	return (checked != undefined && checked != null && (checked == true || checked == 'checked'));
-    };
-    
+   Plugin.isChecked = function(checkmark){
+     var checked = checkmark.data('checked');
+     return (checked != undefined && checked != null && (checked == true || checked == 'checked'));
+   };
+
 	/**
 	 * Método responsável por adicionar evento no label relacionado.
 	 * 
@@ -251,15 +252,15 @@
 	 * 
 	 * @return void.
 	 */
-    Plugin.label = function(checkmark){
-    	var label = $('label[for="' + checkmark.data('id')+'"]');
-		if(Plugin.isActive(checkmark) == false){
-			label.click(function(){
-				Plugin.click(checkmark);
-			});
-		}
-		label.addClass(labelStyleClass);
-		label.attr('oldfor', checkmark.data('id'));
-		label.removeAttr('for');
-	};
-}(jQuery, window, document));
+   Plugin.label = function(checkmark){
+     var label = $('label[for="' + checkmark.data('id')+'"]');
+     if(Plugin.isActive(checkmark) == false){
+       label.click(function(){
+        Plugin.click(checkmark);
+      });
+     }
+     label.addClass(labelStyleClass);
+     label.attr('oldfor', checkmark.data('id'));
+     label.removeAttr('for');
+   };
+ }(jQuery, window, document));
