@@ -13,14 +13,14 @@
 	 * -------------------------------------------------------------------------
 	 */
 	
-    var pluginName = 'checkmark',
-      lenth = 0,
-    	inputStyleClass = 'ui-checkmark-input',
-    	labelStyleClass = 'ui-checkmark-label',
-    	styleClass = 'ui-checkmark';
-      defaults = {
-    		styleClass: ''
-    	};
+  var pluginName = 'checkmark';
+  var lenth = 0;
+  var inputStyleClass = 'ui-checkmark-input';
+  var labelStyleClass = 'ui-checkmark-label';
+  var styleClass = 'ui-checkmark';
+  var defaults = {
+    styleClass: ''
+  };
     
      
 	/*											Constructors
