@@ -262,4 +262,4 @@
 		label.attr('oldfor', checkmark.data('id'));
 		label.removeAttr('for');
 	};
-}(jQuery, window));
+}(jQuery, window, document));
