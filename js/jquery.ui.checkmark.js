@@ -7,7 +7,7 @@
  * @version 0.7
  * @see https://github.com/thiagogarbazza/jquery.ui.checkmark/wiki
  */
- ;(function($, window, document undefined){
+ ;(function($, window, document, undefined){
 
 	/*											Attributes
 	 * -------------------------------------------------------------------------
@@ -38,18 +38,6 @@
      this.init();
    };
 
-   $.fn[pluginName] = function(options){
-    return this.each(function(){
-      if (!$.data(this, 'plugin_' + pluginName)){
-        $.data(this, 'plugin_' + pluginName, new Plugin(this, options));
-      }
-    });
-  };
-
-	/*											Methods
-	 * -------------------------------------------------------------------------
-	 */
-
    Plugin.prototype = {
     init: function () {
       var input = $(this.element);
@@ -61,7 +49,7 @@
          input.attr('id', 'ui-checkmark-'+id);
         }
 
-        var checkmarkId = 'ui-checkmark-' + id;    	
+        var checkmarkId = 'ui-checkmark-' + id;     
         input.addClass(inputStyleClass);
         input.wrap('<a id="'+checkmarkId+'" class="ui-widget '+styleClass+' ui-'+type+' '+this.options.styleClass+'" href="javascript:;" />');
 
@@ -79,7 +67,7 @@
         Plugin.label(checkmark);
 
         if(Plugin.isActive(checkmark) == true){
-          Plugin.deactivate(checkmark);	
+          Plugin.deactivate(checkmark); 
         }else{
           checkmark.keyup(function(event){
             if(event.keyCode == 32){
@@ -96,6 +84,17 @@
     }  
   };
 
+  $.fn[pluginName] = function(options){
+    return this.each(function(){
+      if (!$.data(this, 'plugin_' + pluginName)){
+        $.data(this, 'plugin_' + pluginName, new Plugin(this, options));
+      }
+    });
+  };
+
+	/*											Other Methods
+	 * -------------------------------------------------------------------------
+	 */
     /**
 	 * Método responsável por controlar o input que está marcado ou não marcado. 
 	 * 
