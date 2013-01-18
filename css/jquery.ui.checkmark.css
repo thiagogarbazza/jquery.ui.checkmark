@@ -7,6 +7,10 @@
 	background: url("../images/ui-checkmark.png") no-repeat scroll 0 0 transparent;
 }
 
+.ui-checkmark-gray{
+	background: url("../images/ui-checkmark-gray.png") no-repeat scroll 0 0 transparent;
+}
+
 .ui-checkmark:focus {
 	outline: thin dotted;
 }
@@ -17,6 +21,7 @@
 
 .ui-checkmark-label {
 	display: inline-block;
+	cursor: pointer;
 }
 
 .ui-checkmark-disabled {
